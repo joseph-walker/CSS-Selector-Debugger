@@ -1,14 +1,35 @@
-import { store } from './data/store';
+import { CssSelector, store } from './data/store';
 
 declare const chrome: any;
 
 export default function drawSelectors() {
     const { selectors } = store.getState();
 
-    const styles = selectors.reduce(function(script, selector) {
+    let styles = ``;
+
+    styles += selectors.reduce(function(script: string, { selectorString }: CssSelector) {
+        if (selectorString == '') return script;
+
         return script + `
-            ${selector} {
-                background-color: red;
+            ${selectorString} {
+                position: relative;
+            }
+
+            ${selectorString}:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 0, 0, 0.4);
+                border: 1px dashed rgba(32, 32, 32, 0.25);
+                pointer-events: none;
+                padding: 4px;
+                margin-left: -4px;
+                margin-top: -4px;
             }
         `;
     }, '');
@@ -32,9 +53,6 @@ export default function drawSelectors() {
 
         document.head.appendChild(injectedStyleElement);
     `;
-
-    console.log(selectors);
-    console.log(script);
 
     chrome.tabs.executeScript({
       code: script
