@@ -28,7 +28,7 @@ function reducer(state: Model = emptyModel, action: Action): Model {
             return R.over(LSelectors, R.append(emptySelector), state);
         }
         case ActionType.EditSelector: {
-            const index = <R.Lens>R.compose(LSelectors, R.lensIndex(action.whoAmI));
+            const index = <R.Lens>R.compose(LSelectors, R.lensIndex(action.whoAmI), R.lensProp('selectorString'));
 
             return R.set(index, action.value, state);
         }
