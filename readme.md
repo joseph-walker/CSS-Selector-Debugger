@@ -16,7 +16,7 @@ webpack --watch
 ```
 
 ## Installing
-To install the Chrome extension, navigate to `chrome://extension` and make sure Developer mode is turned on.
+To install the Chrome extension, navigate to `chrome://extensions` and make sure Developer mode is turned on.
 Click on `Load Unpacked Extension` and navigate to this project's `dist` directory.
 
 Whenever Webpack builds the project, Chrome should automatically reload the extension to reflect the latest changes.
