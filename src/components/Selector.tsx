@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { CssSelector } from './../data/store';
+import { CssSelector } from './../data/Model';
 
 interface SelectorProps {
     whoAmI: number,

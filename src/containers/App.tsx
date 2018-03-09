@@ -1,36 +1,26 @@
 import * as React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+
+import { CssSelector } from './../data/Model';
+import { addSelector$ } from './../data/actions/addSelector';
+import { editSelector$ } from './../data/actions/editSelector';
 
 import SelectorEditor from './../components/Selector';
 
-import { Model, CssSelector } from './../data/store';
-import { AddSelectorActionCreator, addSelector } from './../data/actions/addSelector';
-import { EditSelectorActionCreator, editSelector } from './../data/actions/editSelector';
-
-// The interface that defines what properties are connected from the Redux store
-interface ConnectedState {
+// The interface that defines what properties are passed on the JSX component
+interface AppProps {
     selectors: CssSelector[]
 }
 
-// The interface that defines the action creators bound by the connect HOC
-interface ConnectedDispatch {
-    addSelector: AddSelectorActionCreator,
-    editSelector: EditSelectorActionCreator
-}
-
-// The interface that defines what properties are passed on the JSX component
-interface AppProps {
-    //
-}
-
-class App extends React.Component<ConnectedState & ConnectedDispatch & AppProps, {}> {
+class App extends React.Component<AppProps, {}> {
     private handleAddSelector = () => {
-        this.props.addSelector();
+        addSelector$.next();
     }
 
     private handleEditSelector = (index: number) => (value: string) => {
-        this.props.editSelector(index, value);
+        editSelector$.next({
+            whoAmI: index,
+            value
+        });
     }
 
     public render() {
@@ -58,15 +48,4 @@ class App extends React.Component<ConnectedState & ConnectedDispatch & AppProps,
     }
 }
 
-function mapStateToProps(state: Model): ConnectedState {
-    return {
-        selectors: state.selectors
-    };
-}
-
-const mapDispatchToProps = {
-    addSelector,
-    editSelector
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

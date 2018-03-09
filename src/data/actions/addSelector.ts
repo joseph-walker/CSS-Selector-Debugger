@@ -1,11 +1,22 @@
-import { ActionCreator } from 'redux';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
-import { ActionType, AddSelectorRecord } from './actionTypes';
+import 'rxjs/add/operator/map';
 
-export type AddSelectorActionCreator = ActionCreator<AddSelectorRecord>
-
-export const addSelector: ActionCreator<AddSelectorRecord> = function(): AddSelectorRecord {
-    return {
-        type: ActionType.AddSelector
-    };
+interface AddSelectorPayload {
+    //
 };
+
+export interface AddSelector extends AddSelectorPayload {
+    type: 'ADD_SELECTOR'
+};
+
+function AddSelector(data: AddSelectorPayload): AddSelector {
+    return {
+        type: 'ADD_SELECTOR'
+    };
+}
+
+export const addSelector$: Subject<AddSelectorPayload> = new Subject();
+
+export const addSelectorAction$: Observable<AddSelector> = addSelector$.map(AddSelector);

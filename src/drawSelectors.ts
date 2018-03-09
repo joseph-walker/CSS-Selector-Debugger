@@ -1,10 +1,8 @@
-import { CssSelector, store } from './data/store';
+import { CssSelector } from './data/Model';
 
 declare const chrome: any;
 
-export default function drawSelectors() {
-    const { selectors } = store.getState();
-
+export default function drawSelectors(selectors: CssSelector[]) {
     let styles = ``;
 
     styles += selectors.reduce(function(script: string, { selectorString }: CssSelector) {

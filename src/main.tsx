@@ -2,18 +2,16 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { store } from './data/store';
+import { state } from './data/state';
+import { Model } from './data/Model';
 import App from './containers/App';
 import drawSelectors from './drawSelectors';
 
-const app = (
-    <Provider store={store}>
-        <App />
-    </Provider>
-);
+state.subscribe(function(state: Model) {
+    const app = (
+        <App selectors={state.selectors} />
+    );
 
-store.subscribe(drawSelectors);
-
-// Run
-render(app, document.getElementById('app'));
-drawSelectors();
+    drawSelectors(state.selectors);
+    render(app, document.getElementById('app'));
+});
