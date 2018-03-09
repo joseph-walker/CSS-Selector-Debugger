@@ -1,6 +1,8 @@
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
+import { ActionType } from './actionTypes';
+
 import 'rxjs/add/operator/map';
 
 interface AddSelectorPayload {
@@ -8,12 +10,12 @@ interface AddSelectorPayload {
 };
 
 export interface AddSelector extends AddSelectorPayload {
-    type: 'ADD_SELECTOR'
+    type: ActionType.AddSelector
 };
 
 function AddSelector(data: AddSelectorPayload): AddSelector {
     return {
-        type: 'ADD_SELECTOR'
+        type: ActionType.AddSelector
     };
 }
 

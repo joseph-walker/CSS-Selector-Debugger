@@ -20,6 +20,9 @@ export function update(state: Model, action: Action): Model {
 
             return R.set(index, action.value, state);
         }
+        case ActionType.DeleteSelector: {
+            return R.over(LSelectors, R.remove(action.whoAmI, 1), state);
+        }
         default: {
             return state;
         }

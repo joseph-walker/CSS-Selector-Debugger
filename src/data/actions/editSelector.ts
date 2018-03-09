@@ -1,6 +1,8 @@
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
+import { ActionType } from './actionTypes';
+
 import 'rxjs/add/operator/map';
 
 interface EditSelectorPayload {
@@ -9,12 +11,12 @@ interface EditSelectorPayload {
 };
 
 export interface EditSelector extends EditSelectorPayload {
-    type: 'EDIT_SELECTOR'
+    type: ActionType.EditSelector
 };
 
 function EditSelector(data: EditSelectorPayload): EditSelector {
     return {
-        type: 'EDIT_SELECTOR',
+        type: ActionType.EditSelector,
         ...data
     };
 }

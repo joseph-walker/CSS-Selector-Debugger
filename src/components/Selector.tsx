@@ -5,7 +5,8 @@ import { CssSelector } from './../data/Model';
 interface SelectorProps {
     whoAmI: number,
     selector: CssSelector,
-    onChange: (value: string) => void
+    onChange: (value: string) => void,
+    onDelete: () => void
 }
 
 class SelectorEditor extends React.Component<SelectorProps, {}> {
@@ -14,7 +15,7 @@ class SelectorEditor extends React.Component<SelectorProps, {}> {
             <li className="selector-ux-size-enhancer">
                 <div className="selector">
                     <em>Selector {this.props.whoAmI + 1}</em>
-                    <a className="delete"><span>&times;</span></a>
+                    <a className="delete" onClick={this.props.onDelete}><span>&times;</span></a>
                     <div className="inputs">
                         <input
                             type="text"

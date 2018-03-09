@@ -3,6 +3,7 @@ import * as React from 'react';
 import { CssSelector } from './../data/Model';
 import { addSelector$ } from './../data/actions/addSelector';
 import { editSelector$ } from './../data/actions/editSelector';
+import { deleteSelector$ } from './../data/actions/deleteSelector';
 
 import SelectorEditor from './../components/Selector';
 
@@ -23,11 +24,18 @@ class App extends React.Component<AppProps, {}> {
         });
     }
 
+    private handleDeleteSelector = (index: number) => () => {
+        deleteSelector$.next({
+            whoAmI: index
+        });
+    }
+
     public render() {
         const selectors = this.props.selectors.map((selector, index) => (
             <SelectorEditor
                 whoAmI={index}
                 selector={selector}
+                onDelete={this.handleDeleteSelector(index)}
                 onChange={this.handleEditSelector(index)} />
         ));
 
