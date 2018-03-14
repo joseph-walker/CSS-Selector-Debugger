@@ -1,11 +1,12 @@
 import { CssSelector } from './data/Model';
+import { colorIndexToString, generateColorIndexAlpha } from './data/util/generateColorIndex';
 
 declare const chrome: any;
 
 export default function drawSelectors(selectors: CssSelector[]) {
     let styles = ``;
 
-    styles += selectors.reduce(function(script: string, { selectorString }: CssSelector) {
+    styles += selectors.reduce(function(script: string, { selectorString }: CssSelector, index: number) {
         if (selectorString == '') return script;
 
         return script + `
@@ -22,8 +23,8 @@ export default function drawSelectors(selectors: CssSelector[]) {
                 bottom: 0;
                 width: 100%;
                 height: 100%;
-                background-color: rgba(255, 0, 0, 0.4);
-                border: 1px dashed rgba(32, 32, 32, 0.25);
+                background-color: ${colorIndexToString(generateColorIndexAlpha(index, 0.25))};
+                border: 1px dashed ${colorIndexToString(generateColorIndexAlpha(index, 0.4))};
                 pointer-events: none;
                 padding: 4px;
                 margin-left: -4px;

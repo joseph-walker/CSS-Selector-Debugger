@@ -137,7 +137,7 @@ header {
     left: 4px;
     width: 16px;
     height: 16px;
-    background-color: #00AAE1;
+    background-color: currentColor;
     border-radius: 2px;
 }
 

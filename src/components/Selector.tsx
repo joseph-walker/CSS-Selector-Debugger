@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { CssSelector } from './../data/Model';
+import { colorIndexToString, generateColorIndex } from './../data/util/generateColorIndex';
 
 interface SelectorProps {
     whoAmI: number,
@@ -9,24 +10,26 @@ interface SelectorProps {
     onDelete: () => void
 }
 
-class SelectorEditor extends React.Component<SelectorProps, {}> {
-    public render() {
-        return (
-            <li className="selector-ux-size-enhancer">
-                <div className="selector">
-                    <em>Selector {this.props.whoAmI + 1}</em>
-                    <a className="delete" onClick={this.props.onDelete}><span>&times;</span></a>
-                    <div className="inputs">
-                        <input
-                            type="text"
-                            value={this.props.selector.selectorString}
-                            onChange={event => this.props.onChange(event.target.value)} />
-                        <div className="color"></div>
-                    </div>
+function SelectorEditor(props: SelectorProps) {
+    const colorStyle = {
+        color: colorIndexToString(generateColorIndex(props.whoAmI))
+    };
+
+    return (
+        <li className="selector-ux-size-enhancer">
+            <div className="selector">
+                <em>Selector {props.whoAmI + 1}</em>
+                <a className="delete" onClick={props.onDelete}><span>&times;</span></a>
+                <div className="inputs">
+                    <input
+                        type="text"
+                        value={props.selector.selectorString}
+                        onChange={event => props.onChange(event.target.value)} />
+                    <div className="color" style={colorStyle}></div>
                 </div>
-            </li>
-        );
-    }
+            </div>
+        </li>
+    );
 }
 
 export default SelectorEditor;

@@ -12,48 +12,46 @@ interface AppProps {
     selectors: CssSelector[]
 }
 
-class App extends React.Component<AppProps, {}> {
-    private handleAddSelector = () => {
-        addSelector$.next();
-    }
+const handleAddSelector = () => {
+    addSelector$.next();
+}
 
-    private handleEditSelector = (index: number) => (value: string) => {
-        editSelector$.next({
-            whoAmI: index,
-            value
-        });
-    }
+const handleEditSelector = (index: number) => (value: string) => {
+    editSelector$.next({
+        whoAmI: index,
+        value
+    });
+}
 
-    private handleDeleteSelector = (index: number) => () => {
-        deleteSelector$.next({
-            whoAmI: index
-        });
-    }
+const handleDeleteSelector = (index: number) => () => {
+    deleteSelector$.next({
+        whoAmI: index
+    });
+}
 
-    public render() {
-        const selectors = this.props.selectors.map((selector, index) => (
-            <SelectorEditor
-                whoAmI={index}
-                selector={selector}
-                onDelete={this.handleDeleteSelector(index)}
-                onChange={this.handleEditSelector(index)} />
-        ));
+function App(props: AppProps) {
+    const selectors = props.selectors.map((selector, index) => (
+        <SelectorEditor
+            whoAmI={index}
+            selector={selector}
+            onDelete={handleDeleteSelector(index)}
+            onChange={handleEditSelector(index)} />
+    ));
 
-        return (
-            <div>
-                <header>
-                    <h1 className="app-title">CSS Selector Helper</h1>
-                    <button className="button">Enabled</button>
-                </header>
-                <main>
-                    <ol className="selectors">{selectors}</ol>
-                    <nav className="controls">
-                        <button className="button" onClick={this.handleAddSelector}>+ Add Selector</button>
-                    </nav>
-                </main>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <header>
+                <h1 className="app-title">CSS Selector Helper</h1>
+                <button className="button">Enabled</button>
+            </header>
+            <main>
+                <ol className="selectors">{selectors}</ol>
+                <nav className="controls">
+                    <button className="button" onClick={handleAddSelector}>+ Add Selector</button>
+                </nav>
+            </main>
+        </div>
+    );
 }
 
 export default App;
