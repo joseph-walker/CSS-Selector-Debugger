@@ -16,7 +16,7 @@ function SelectorEditor(props: SelectorProps) {
     };
 
     return (
-        <li className="selector-ux-size-enhancer">
+        <li className="selector-ux-size-enhancer" key={props.whoAmI}>
             <div className="selector">
                 <em>Selector {props.whoAmI + 1}</em>
                 <a className="delete" onClick={props.onDelete}><span>&times;</span></a>
