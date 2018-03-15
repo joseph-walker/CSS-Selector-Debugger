@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 
-import { Model, CssSelector, emptySelector } from './model';
+import { Model, CssSelector, emptySelector } from './appModel';
 import { Action } from './actions';
 import { ActionType } from './actions/actionTypes';
 

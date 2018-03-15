@@ -8,6 +8,9 @@
         "default_popup": "index.html"
     },
     "permissions": [
-        "activeTab"
+        "http://*/*",
+        "https://*/*",
+        "activeTab",
+        "storage"
     ]
 }

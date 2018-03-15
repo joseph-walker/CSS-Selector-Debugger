@@ -13,3 +13,7 @@ export const emptySelector: CssSelector = {
 export const emptyModel: Model = {
     selectors: []
 };
+
+export function isValidModel(maybeModel: {}): maybeModel is Model {
+    return (<Model>maybeModel).selectors !== undefined;
+}
