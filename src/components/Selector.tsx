@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { CssSelector } from './../data/Model';
+import { CssSelector } from './../data/appModel';
 import { colorIndexToString, generateColorIndex } from './../data/util/generateColorIndex';
 
 interface SelectorProps {

@@ -13,16 +13,11 @@ function isColorIndexAlpha(index: ColorIndex): index is ColorIndexAlpha {
 }
 
 export function generateColorIndex(index: number): ColorIndex {
-    return {
-        h: index * offset
-    };
+    return { h: index * offset };
 }
 
 export function generateColorIndexAlpha(index: number, alpha: number): ColorIndexAlpha {
-    return {
-        a: alpha,
-        ...generateColorIndex(index)
-    };
+    return { a: alpha, ...generateColorIndex(index) };
 }
 
 export function colorIndexToString(index: ColorIndex | ColorIndexAlpha): string {

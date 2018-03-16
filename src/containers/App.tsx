@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { CssSelector } from './../data/Model';
+import { CssSelector } from './../data/appModel';
 import { addSelector$ } from './../data/actions/addSelector';
 import { editSelector$ } from './../data/actions/editSelector';
 import { deleteSelector$ } from './../data/actions/deleteSelector';

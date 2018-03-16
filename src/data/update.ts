@@ -23,6 +23,9 @@ export function update(state: Model, action: Action): Model {
         case ActionType.DeleteSelector: {
             return R.over(LSelectors, R.remove(action.whoAmI, 1), state);
         }
+        case ActionType.SyncStateFromStorage: {
+            return action.newState;
+        }
         default: {
             return state;
         }

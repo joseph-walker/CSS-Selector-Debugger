@@ -1,4 +1,4 @@
-import { CssSelector } from './data/Model';
+import { CssSelector } from './data/appModel';
 import { colorIndexToString, generateColorIndexAlpha } from './data/util/generateColorIndex';
 
 declare const chrome: any;

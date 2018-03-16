@@ -15,15 +15,12 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/multicast';
 
-// Subscribe React to the State stream
-const appState$ = Observable
-    .merge(state$, stateFromStorage$)
-    .startWith(emptyModel);
-
 // Because we subscribe to appState$ in two places (one debounced),
 // we have to multicast our stream. Otherwise appState$ side effects (like getting state from storage)
 // will run twice -- once for each subscription.
-const multicast$ = appState$.multicast(new Subject());
+const multicast$ = state$
+    .startWith(emptyModel)
+    .multicast(new Subject());
 
 multicast$
     .subscribe(function(state: Model) {
