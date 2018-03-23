@@ -22,9 +22,9 @@ export function generateColorIndexAlpha(index: number, alpha: number): ColorInde
 
 export function colorIndexToString(index: ColorIndex | ColorIndexAlpha): string {
     if (isColorIndexAlpha(index)) {
-        return `hsla(${index.h}, 100%, 50%, ${index.a})`;
+        return `hsla(${index.h}, 100%, 75%, ${index.a})`;
     }
     else {
-        return `hsl(${index.h}, 100%, 50%)`;
+        return `hsl(${index.h}, 100%, 75%)`;
     }
 }
