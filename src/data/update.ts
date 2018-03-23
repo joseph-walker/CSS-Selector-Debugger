@@ -1,41 +1,41 @@
-import * as R from 'ramda';
+import { over, set, append, remove, lensIndex, lensProp, compose, Lens as RamdaLens } from 'ramda';
 
 import { Model, CssSelector, emptySelector } from './appModel';
 import { Action } from './actions';
 import { ActionType } from './actions/actionTypes';
 
-const LSelectors = R.lensProp('selectors');
-const LConfiguration = R.lensProp('appConfiguration');
+const LSelectors = lensProp('selectors');
+const LConfiguration = lensProp('appConfiguration');
 
 export function update(state: Model, action: Action): Model {
     switch(action.type) {
         case ActionType.AddSelector: {
-            return R.over(LSelectors, R.append(emptySelector), state);
+            return over(LSelectors, append(emptySelector), state);
         }
         case ActionType.EditSelector: {
-            const index = <R.Lens>R.compose(
+            const index = <RamdaLens>compose(
                 LSelectors,
-                R.lensIndex(action.whoAmI),
-                R.lensProp('selectorString')
+                lensIndex(action.whoAmI),
+                lensProp('selectorString')
             );
 
-            return R.set(index, action.value, state);
+            return set(index, action.value, state);
         }
         case ActionType.DeleteSelector: {
-            return R.over(LSelectors, R.remove(action.whoAmI, 1), state);
+            return over(LSelectors, remove(action.whoAmI, 1), state);
         }
         case ActionType.SyncStateFromStorage: {
             return action.newState;
         }
         case ActionType.ToggleExtensionEnabled: {
-            const enabled = <R.Lens>R.compose(
+            const enabled = <RamdaLens>compose(
                 LConfiguration,
-                R.lensProp('enabled')
+                lensProp('enabled')
             );
 
             const flop = (b: boolean) => !b;
 
-            return R.over(enabled, flop, state);
+            return over(enabled, flop, state);
         }
         default: {
             return state;
