@@ -1,7 +1,32 @@
 import { CssSelector } from './data/appModel';
 import { colorIndexToString, generateColorIndexAlpha } from './data/util/generateColorIndex';
 
-export function drawSelectors(selectors: CssSelector[]) {
+export function drawSelectors(selectors: CssSelector[], enabled: boolean) {
+    if (enabled) {
+        updatePageStyles(selectors);
+    }
+    else {
+        removeExistingPageStyles();
+    }
+}
+
+function removeExistingPageStyles(): void {
+    const script = `
+        var injectedStyleElement = document.getElementById('__selector-debugger-injected-styles');
+
+        if (injectedStyleElement) {
+            while (injectedStyleElement.firstChild) {
+                injectedStyleElement.removeChild(injectedStyleElement.firstChild);
+            }
+        }
+    `;
+
+    chrome.tabs.executeScript({
+      code: script
+    });
+}
+
+function updatePageStyles(selectors: CssSelector[]): void {
     let styles = ``;
 
     styles += selectors.reduce(function(script: string, { selectorString }: CssSelector, index: number) {

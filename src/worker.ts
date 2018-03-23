@@ -5,16 +5,12 @@ import { Model } from './data/appModel';
 import { stateFromStorage$ } from './data/storage';
 import { drawSelectors } from "./drawSelectors";
 
-function drawSelectorsIfExtensionEnabled(state: Model) {
-    if (state.appConfiguration.enabled) {
-        drawSelectors(state.selectors);
-    }
-}
+const drawSelectorsFromState = (state: Model) => drawSelectors(state.selectors, state.appConfiguration.enabled);
 
 function loadStateAndDrawSelectors() {
-    return stateFromStorage$.subscribe(drawSelectorsIfExtensionEnabled);
+    return stateFromStorage$.subscribe(drawSelectorsFromState);
 }
 
 chrome.webNavigation.onDOMContentLoaded.addListener(loadStateAndDrawSelectors);
 chrome.tabs.onActivated.addListener(loadStateAndDrawSelectors);
-chrome.runtime.onMessage.addListener(drawSelectorsIfExtensionEnabled);
+chrome.runtime.onMessage.addListener(drawSelectorsFromState);
