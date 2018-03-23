@@ -3,7 +3,8 @@ export interface CssSelector {
 };
 
 export interface AppConfiguration {
-    enabled: boolean
+    enabled: boolean,
+    version: 1
 };
 
 export interface Model {
@@ -18,6 +19,7 @@ export const emptySelector: CssSelector = {
 export const emptyModel: Model = {
     selectors: [],
     appConfiguration: {
+        version: 1,
         enabled: false
     }
 };
@@ -33,5 +35,6 @@ export function isValidModel(maybeModel: {}): maybeModel is Model {
 export function isValidAppConfiguration(maybeAppConfiguration: {}): maybeAppConfiguration is AppConfiguration {
     const config = <AppConfiguration>maybeAppConfiguration;
 
-    return typeof config.enabled === 'boolean';
+    return config.version === 1
+        && typeof config.enabled === 'boolean';
 }
