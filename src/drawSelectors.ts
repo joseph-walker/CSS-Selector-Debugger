@@ -29,32 +29,37 @@ function removeExistingPageStyles(): void {
 function updatePageStyles(selectors: CssSelector[]): void {
     let styles = ``;
 
-    styles += selectors.reduce(function(script: string, { selectorString }: CssSelector, index: number) {
-        if (selectorString == '') return script;
+    styles += selectors
+        .map(function({ selectorString } : CssSelector) {
+            return selectorString.trim();
+        })
+        .filter(function(selectorString: string) {
+            return selectorString !== '';
+        })
+        .reduce(function(script: string, selectorString: string, index: number) {
+            return script + `
+                ${selectorString} {
+                    position: relative;
+                }
 
-        return script + `
-            ${selectorString} {
-                position: relative;
-            }
-
-            ${selectorString}:after {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                width: 100%;
-                height: 100%;
-                background-color: ${colorIndexToString(generateColorIndexAlpha(index, 0.25))};
-                border: 1px dashed ${colorIndexToString(generateColorIndexAlpha(index, 0.4))};
-                pointer-events: none;
-                padding: 4px;
-                margin-left: -4px;
-                margin-top: -4px;
-            }
-        `;
-    }, '');
+                ${selectorString}:after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: ${colorIndexToString(generateColorIndexAlpha(index, 0.25))};
+                    border: 1px dashed ${colorIndexToString(generateColorIndexAlpha(index, 0.4))};
+                    pointer-events: none;
+                    padding: 4px;
+                    margin-left: -4px;
+                    margin-top: -4px;
+                }
+            `;
+        }, '');
 
     const script = `
         var injectedStyleElement = document.getElementById('__selector-debugger-injected-styles');
