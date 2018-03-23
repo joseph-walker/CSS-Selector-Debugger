@@ -6,6 +6,8 @@ A Chrome extension to help target specific DOM elements with CSS selectors.
 
 ## Building
 ```
+git clone https://github.com/joseph-walker/CSS-Selector-Debugger.git
+cd CSS-Selector-Debugger
 npm install
 webpack
 ```
@@ -16,6 +18,8 @@ webpack --watch
 ```
 
 ## Installing
+First, build the project -- refer to the _Building_ section above.
+
 To install the Chrome extension, navigate to `chrome://extensions` and make sure Developer mode is turned on.
 Click on `Load Unpacked Extension` and navigate to this project's `dist` directory.
 
