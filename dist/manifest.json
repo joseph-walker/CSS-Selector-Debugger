@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "PCA Calltrack Selector Debugger",
-    "description": "Debugger for finding phone numbers on a page",
+    "name": "CSS Selector Debugger",
+    "description": "Debugger for locating DOM elements on a page using CSS selectors",
     "version": "1.0",
     "browser_action": {
         "default_icon": "highlighter.png",
