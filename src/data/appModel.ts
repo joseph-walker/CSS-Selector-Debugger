@@ -3,8 +3,8 @@ export interface CssSelector {
 };
 
 export interface AppConfiguration {
-    enabled: boolean,
-    version: 1
+    version: 1,
+    enabled: boolean
 };
 
 export interface Model {
