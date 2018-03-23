@@ -31,7 +31,7 @@ function updatePageStyles(selectors: CssSelector[]): void {
 
     styles += selectors
         .map(function({ selectorString } : CssSelector) {
-            return selectorString.trim();
+            return selectorString.replace(/^[ \t]+|[ ,\t]+$/, '');
         })
         .filter(function(selectorString: string) {
             return selectorString !== '';
