@@ -27,14 +27,15 @@ export const emptyModel: Model = {
 export function isValidModel(maybeModel: {}): maybeModel is Model {
     const model = <Model>maybeModel;
 
-    return model.selectors !== undefined
-        && model.appConfiguration !== undefined
+    return model !== undefined
+        && model.selectors !== undefined
         && isValidAppConfiguration(model.appConfiguration);
 }
 
 export function isValidAppConfiguration(maybeAppConfiguration: {}): maybeAppConfiguration is AppConfiguration {
     const config = <AppConfiguration>maybeAppConfiguration;
 
-    return config.version === 1
+    return config !== undefined
+        && config.version === 1
         && typeof config.enabled === 'boolean';
 }

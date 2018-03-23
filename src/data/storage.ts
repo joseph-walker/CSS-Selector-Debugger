@@ -10,7 +10,11 @@ interface StoredState {
 }
 
 export const stateFromStorage$ = new Observable<Model>(function subscribe(observer) {
+    console.log("Getting State...");
+
     chrome.storage.local.get('state', function({ state }: StoredState) {
+        console.log(isValidModel(state));
+
         if (isValidModel(state)) {
             observer.next(state);
         }
