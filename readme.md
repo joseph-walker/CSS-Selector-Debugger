@@ -23,4 +23,4 @@ Whenever Webpack builds the project, Chrome should automatically reload the exte
 If for some reason it doesn't do that, navigate to `chrome://extensions`, locate this extension in the list, and hit the refresh button.
 
 ## Attributions
-Highlighter icon by [Freepik](http://www.freepik.com) from [Flaticon](https://www.flaticon.com) is licensed under [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0)
+![Highlighter](./dist/highlighter.png) Icon by [Freepik](http://www.freepik.com) from [Flaticon](https://www.flaticon.com) is licensed under [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0)
