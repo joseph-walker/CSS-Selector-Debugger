@@ -1,8 +1,11 @@
 module.exports = {
     devtool: 'inline-source-map',
-    entry: './src/main.tsx',
+    entry: {
+        extension: './src/main.tsx',
+        background: './src/worker.ts'
+    },
     output: {
-        filename: './dist/build/bundle.js'
+        filename: './dist/build/[name].js'
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js']

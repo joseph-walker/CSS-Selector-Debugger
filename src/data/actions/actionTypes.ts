@@ -3,5 +3,6 @@ export enum ActionType {
     AddSelector = 'ADD_SELECTOR',
     EditSelector = 'EDIT_SELECTOR',
     DeleteSelector = 'DELETE_SELECTOR',
-    SyncStateFromStorage = 'SYNC_STATE_FROM_STORAGE'
+    SyncStateFromStorage = 'SYNC_STATE_FROM_STORAGE',
+    ToggleExtensionEnabled = 'TOGGLE_EXTENSION_ENABLED'
 };

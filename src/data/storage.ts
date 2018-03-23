@@ -1,6 +1,9 @@
 import { Observable } from 'rxjs/Observable';
 
-import { Model, isValidModel } from './appModel';
+import { Model, isValidModel, emptyModel } from './appModel';
+
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/catch';
 
 interface StoredState {
     state: Model
@@ -9,15 +12,19 @@ interface StoredState {
 export const stateFromStorage$ = new Observable<Model>(function subscribe(observer) {
     chrome.storage.local.get('state', function({ state }: StoredState) {
         if (isValidModel(state)) {
-            console.log('Got State...', state);
             observer.next(state);
+        }
+        else {
+            console.error('Found Problem with State');
+            observer.error();
         }
 
         observer.complete();
     });
+}).catch(function(err) {
+    return Observable.of(emptyModel);
 });
 
 export function saveState(state: Model) {
-    console.log('Saving State...', state);
     chrome.storage.local.set({ state: state });
 }

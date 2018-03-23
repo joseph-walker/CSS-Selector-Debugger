@@ -5,6 +5,7 @@ import { Action } from './actions';
 import { ActionType } from './actions/actionTypes';
 
 const LSelectors = R.lensProp('selectors');
+const LConfiguration = R.lensProp('appConfiguration');
 
 export function update(state: Model, action: Action): Model {
     switch(action.type) {
@@ -25,6 +26,16 @@ export function update(state: Model, action: Action): Model {
         }
         case ActionType.SyncStateFromStorage: {
             return action.newState;
+        }
+        case ActionType.ToggleExtensionEnabled: {
+            const enabled = <R.Lens>R.compose(
+                LConfiguration,
+                R.lensProp('enabled')
+            );
+
+            const flop = (b: boolean) => !b;
+
+            return R.over(enabled, flop, state);
         }
         default: {
             return state;

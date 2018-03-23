@@ -6,9 +6,8 @@ import { Subject } from 'rxjs/Subject';
 
 import { state$ } from './data/state';
 import { saveState, stateFromStorage$ } from './data/storage';
-import { emptyModel, Model } from './data/appModel';
+import { Model } from './data/appModel';
 import App from './containers/App';
-import drawSelectors from './drawSelectors';
 
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/debounceTime';
@@ -19,17 +18,19 @@ import 'rxjs/add/operator/multicast';
 // we have to multicast our stream. Otherwise appState$ side effects (like getting state from storage)
 // will run twice -- once for each subscription.
 const multicast$ = state$
-    .startWith(emptyModel)
     .multicast(new Subject());
 
 multicast$
     .subscribe(function(state: Model) {
         const app = (
-            <App selectors={state.selectors} />
+            <App selectors={state.selectors} configuration={state.appConfiguration} />
         );
 
-        drawSelectors(state.selectors);
+        // Render the React app
         render(app, document.getElementById('app'));
+
+        // Send a message to the Event Page to render the new state
+        chrome.runtime.sendMessage(state);
     });
 
 // Store the state to Chrome Local Storage

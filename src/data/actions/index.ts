@@ -4,6 +4,7 @@ import { AddSelector, addSelectorAction$ } from './addSelector';
 import { EditSelector, editSelectorAction$ } from './editSelector';
 import { DeleteSelector, deleteSelectorAction$ } from './deleteSelector';
 import { SyncStateFromStorage, syncStateFromStorageAction$ } from './syncStateFromStorage'
+import { ToggleExtensionEnabled, toggleExtensionEnabledAction$ } from './toggleExtensionEnabled';
 
 import 'rxjs/add/observable/merge';
 
@@ -13,10 +14,12 @@ export type Action
     | EditSelector
     | DeleteSelector
     | SyncStateFromStorage
+    | ToggleExtensionEnabled
 
 export const actions$ = Observable.merge(
     addSelectorAction$,
     editSelectorAction$,
     deleteSelectorAction$,
-    syncStateFromStorageAction$
+    syncStateFromStorageAction$,
+    toggleExtensionEnabledAction$
 );

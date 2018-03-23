@@ -1,9 +1,7 @@
 import { CssSelector } from './data/appModel';
 import { colorIndexToString, generateColorIndexAlpha } from './data/util/generateColorIndex';
 
-declare const chrome: any;
-
-export default function drawSelectors(selectors: CssSelector[]) {
+export function drawSelectors(selectors: CssSelector[]) {
     let styles = ``;
 
     styles += selectors.reduce(function(script: string, { selectorString }: CssSelector, index: number) {
