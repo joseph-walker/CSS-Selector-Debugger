@@ -1,10 +1,5 @@
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-
 import { ActionType } from './actionTypes';
-import { typeConstructor } from './../util/typeConstructor';
-
-import 'rxjs/add/operator/map';
+import { createAction } from './../util/createAction';
 
 export interface EditSelectorPayload {
     whoAmI: number,
@@ -15,7 +10,7 @@ export interface EditSelector extends EditSelectorPayload {
     type: ActionType.EditSelector
 };
 
-export const editSelector$: Subject<EditSelectorPayload> = new Subject();
-
-export const editSelectorAction$: Observable<EditSelector> = editSelector$
-    .map(typeConstructor<ActionType.EditSelector, EditSelectorPayload>(ActionType.EditSelector));
+export const {
+    invoker$: editSelector$,
+    dispatcher$: editSelectorDispatcher$
+} = createAction<EditSelectorPayload, ActionType.EditSelector>(ActionType.EditSelector);

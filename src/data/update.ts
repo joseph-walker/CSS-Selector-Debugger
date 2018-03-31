@@ -37,6 +37,9 @@ export function update(state: Model, action: Action): Model {
 
             return over(enabled, flop, state);
         }
+        case ActionType.ToggleHideSelector: {
+
+        }
         default: {
             return state;
         }

@@ -1,10 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 
-import { AddSelector, addSelectorAction$ } from './addSelector';
-import { EditSelector, editSelectorAction$ } from './editSelector';
-import { DeleteSelector, deleteSelectorAction$ } from './deleteSelector';
-import { SyncStateFromStorage, syncStateFromStorageAction$ } from './syncStateFromStorage'
-import { ToggleExtensionEnabled, toggleExtensionEnabledAction$ } from './toggleExtensionEnabled';
+import { AddSelector, addSelectorDispatcher$ } from './addSelector';
+import { EditSelector, editSelectorDispatcher$ } from './editSelector';
+import { DeleteSelector, deleteSelectorDispatcher$ } from './deleteSelector';
+import { SyncStateFromStorage, syncStateFromStorageDispatcher$ } from './syncStateFromStorage'
+import { ToggleExtensionEnabled, toggleExtensionEnabledDispatcher$ } from './toggleExtensionEnabled';
+import { ToggleHideSelector, toggleHideSelectorDispatcher$ } from './toggleHideSelector';
 
 import 'rxjs/add/observable/merge';
 
@@ -15,11 +16,13 @@ export type Action
     | DeleteSelector
     | SyncStateFromStorage
     | ToggleExtensionEnabled
+    | ToggleHideSelector
 
 export const actions$ = Observable.merge(
-    addSelectorAction$,
-    editSelectorAction$,
-    deleteSelectorAction$,
-    syncStateFromStorageAction$,
-    toggleExtensionEnabledAction$
+    addSelectorDispatcher$,
+    editSelectorDispatcher$,
+    deleteSelectorDispatcher$,
+    syncStateFromStorageDispatcher$,
+    toggleExtensionEnabledDispatcher$,
+    toggleHideSelectorDispatcher$
 );

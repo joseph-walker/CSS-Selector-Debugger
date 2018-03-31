@@ -10,7 +10,7 @@ export interface SyncStateFromStorage {
     newState: Model
 };
 
-export const syncStateFromStorageAction$ = stateFromStorage$.map(function(state: Model): SyncStateFromStorage {
+export const syncStateFromStorageDispatcher$ = stateFromStorage$.map(function(state: Model): SyncStateFromStorage {
     return {
         type: ActionType.SyncStateFromStorage,
         newState: state
