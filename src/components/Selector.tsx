@@ -12,12 +12,12 @@ interface SelectorProps {
 
 function SelectorEditor(props: SelectorProps) {
     const colorStyle = {
-        color: colorIndexToString(generateColorIndex(props.whoAmI))
+        backgroundColor: colorIndexToString(generateColorIndex(props.whoAmI))
     };
 
     return (
         <section className="selector-card">
-            <i className="color-bar"></i>
+            <i className="color-bar" style={colorStyle}></i>
             <input
                 type="text"
                 value={props.selector.selectorString}

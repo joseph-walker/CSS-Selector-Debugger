@@ -89,7 +89,7 @@ input {
     position: absolute;
     display: block;
     content: '';
-    background-color: #3babec;
+    background-color: peachpuff; /* This gets overridden by an inline style on the component */
     left: 0;
     top: 8px;
     width: 4px;
@@ -163,6 +163,7 @@ input {
     display: flex;
     flex-direction: row;
     color: #999fec;
+    margin-right: -4px;
 }
 
 .footer-actions li {
