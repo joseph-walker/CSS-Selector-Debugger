@@ -16,19 +16,25 @@ function SelectorEditor(props: SelectorProps) {
     };
 
     return (
-        <li className="selector-ux-size-enhancer" key={props.whoAmI}>
-            <div className="selector">
-                <em>Selector {props.whoAmI + 1}</em>
-                <a className="delete" onClick={props.onDelete}><span>&times;</span></a>
-                <div className="inputs">
-                    <input
-                        type="text"
-                        value={props.selector.selectorString}
-                        onChange={event => props.onChange(event.target.value)} />
-                    <div className="color" style={colorStyle}></div>
-                </div>
-            </div>
-        </li>
+        <section className="selector-card">
+            <i className="color-bar"></i>
+            <input
+                type="text"
+                value={props.selector.selectorString}
+                onChange={event => props.onChange(event.target.value)} />
+            <ul className="actions">
+                <li>
+                    <a>
+                        <img className="icon" src="./icons/eye-open.svg" />
+                    </a>
+                </li>
+                <li>
+                    <a onClick={props.onDelete}>
+                        <img className="icon" src="./icons/trash.svg" />
+                    </a>
+                </li>
+            </ul>
+       </section>
     );
 }
 

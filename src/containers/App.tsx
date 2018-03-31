@@ -45,27 +45,38 @@ function App(props: AppProps) {
             onChange={handleEditSelector(index)} />
     ));
 
-    const buttonClass = classname({
-        'button': true,
-        'disabled': !props.configuration.enabled
+    const noSelectorsError = (
+        <p className="error">Click below to add a selector</p>
+    );
+
+    const toggleClass = classname({
+        'toggle-switch': true,
+        'on': props.configuration.enabled
     });
 
     return (
-        <div>
+        <div className="react-container">
             <header>
-                <h1 className="app-title">CSS Selector Helper</h1>
-                <button
-                    className={buttonClass}
+                <h1>Selector Helper</h1>
+                <div
+                    className={toggleClass}
                     onClick={handleToggleExtensionEnabled}>
-                    { props.configuration.enabled ? 'Enabled' : 'Disabled' }
-                </button>
+                    <a className="toggle-slider"></a>
+                </div>
             </header>
-            <main>
-                <ol className="selectors">{selectors}</ol>
-                <nav className="controls">
-                    <button className="button" onClick={handleAddSelector}>+ Add Selector</button>
-                </nav>
+            <hr />
+            <main className="cards">
+                { selectors.length
+                    ? selectors
+                    : noSelectorsError
+                }
             </main>
+            <footer>
+                <ul className="footer-actions">
+                    <li><a>Copy Selectors</a></li>
+                    <li><a onClick={handleAddSelector}>Add Selector</a></li>
+                </ul>
+            </footer>
         </div>
     );
 }
