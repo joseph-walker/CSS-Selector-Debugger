@@ -1,8 +1,9 @@
+@namespace svg "http://www.w3.org/2000/svg";
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
-* {
-    all: unset;
-    box-sizing: border-box;
+:not(svg|*) {
+  all: unset;
+  box-sizing: border-box;
 }
 
 base, basefont, datalist, head, meta, script, style, title, noembed, param, template {

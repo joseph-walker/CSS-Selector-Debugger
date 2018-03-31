@@ -3,6 +3,9 @@ import * as React from 'react';
 import { CssSelector } from './../data/appModel';
 import { colorIndexToString, generateColorIndex } from './../data/util/generateColorIndex';
 
+import { Trash as TrashIcon } from './icons/Trash';
+import { EyeOpen as EyeOpenIcon } from './icons/EyeOpen';
+
 interface SelectorProps {
     whoAmI: number,
     selector: CssSelector,
@@ -10,7 +13,7 @@ interface SelectorProps {
     onDelete: () => void
 }
 
-function SelectorEditor(props: SelectorProps) {
+export function SelectorEditor(props: SelectorProps) {
     const colorStyle = {
         backgroundColor: colorIndexToString(generateColorIndex(props.whoAmI))
     };
@@ -24,18 +27,12 @@ function SelectorEditor(props: SelectorProps) {
                 onChange={event => props.onChange(event.target.value)} />
             <ul className="actions">
                 <li>
-                    <a>
-                        <img className="icon" src="./icons/eye-open.svg" />
-                    </a>
+                    <a><EyeOpenIcon /></a>
                 </li>
                 <li>
-                    <a onClick={props.onDelete}>
-                        <img className="icon" src="./icons/trash.svg" />
-                    </a>
+                    <a onClick={props.onDelete}><TrashIcon /></a>
                 </li>
             </ul>
        </section>
     );
 }
-
-export default SelectorEditor;

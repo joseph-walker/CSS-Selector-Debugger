@@ -7,7 +7,7 @@ import { editSelector$ } from './../data/actions/editSelector';
 import { deleteSelector$ } from './../data/actions/deleteSelector';
 import { toggleExtensionEnabled$ } from './../data/actions/toggleExtensionEnabled';
 
-import SelectorEditor from './../components/Selector';
+import { SelectorEditor } from './../components/Selector';
 
 // The interface that defines what properties are passed on the JSX component
 interface AppProps {
@@ -36,7 +36,7 @@ const handleToggleExtensionEnabled = () => {
     toggleExtensionEnabled$.next();
 };
 
-function App(props: AppProps) {
+export function App(props: AppProps) {
     const selectors = props.selectors.map((selector, index) => (
         <SelectorEditor
             whoAmI={index}
@@ -80,5 +80,3 @@ function App(props: AppProps) {
         </div>
     );
 }
-
-export default App;

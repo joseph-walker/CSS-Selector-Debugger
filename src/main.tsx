@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
 import { state$ } from './data/state';
 import { saveState, stateFromStorage$ } from './data/storage';
 import { Model } from './data/appModel';
-import App from './containers/App';
+import { App } from './containers/App';
 
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/debounceTime';
