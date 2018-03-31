@@ -30,6 +30,9 @@ function updatePageStyles(selectors: CssSelector[]): void {
     let styles = ``;
 
     styles += selectors
+        .filter(function(selector) {
+            return selector.visible === true;
+        })
         .map(function({ selectorString } : CssSelector) {
             return selectorString.replace(/^[ \t]+|[ ,\t]+$/, '');
         })

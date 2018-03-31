@@ -4,6 +4,7 @@ import { Model, CssSelector, emptySelector } from './appModel';
 import { Action } from './actions';
 import { ActionType } from './actions/actionTypes';
 
+const flop = (b: boolean) => !b;
 const LSelectors = lensProp('selectors');
 const LConfiguration = lensProp('appConfiguration');
 
@@ -33,12 +34,16 @@ export function update(state: Model, action: Action): Model {
                 lensProp('enabled')
             );
 
-            const flop = (b: boolean) => !b;
-
             return over(enabled, flop, state);
         }
         case ActionType.ToggleHideSelector: {
+            const index = <RamdaLens>compose(
+                LSelectors,
+                lensIndex(action.whoAmI),
+                lensProp('visible')
+            );
 
+            return over(index, flop, state);
         }
         default: {
             return state;

@@ -1,9 +1,12 @@
+const VERSION: string = '1.1';
+
 export interface CssSelector {
-    selectorString: string
+    selectorString: string,
+    visible: boolean
 };
 
 export interface AppConfiguration {
-    version: 1,
+    version: string,
     enabled: boolean
 };
 
@@ -13,13 +16,14 @@ export interface Model {
 };
 
 export const emptySelector: CssSelector = {
-    selectorString: ''
+    selectorString: '',
+    visible: true
 };
 
 export const emptyModel: Model = {
     selectors: [],
     appConfiguration: {
-        version: 1,
+        version: VERSION,
         enabled: false
     }
 };
@@ -36,6 +40,6 @@ export function isValidAppConfiguration(maybeAppConfiguration: {}): maybeAppConf
     const config = <AppConfiguration>maybeAppConfiguration;
 
     return config !== undefined
-        && config.version === 1
+        && config.version === VERSION
         && typeof config.enabled === 'boolean';
 }

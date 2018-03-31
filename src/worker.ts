@@ -16,4 +16,4 @@ function loadStateAndDrawSelectors() {
 
 chrome.webNavigation.onDOMContentLoaded.addListener(loadStateAndDrawSelectors);
 chrome.tabs.onActivated.addListener(loadStateAndDrawSelectors);
-chrome.runtime.onMessage.addListener(ap([drawSelectorsFromState, updateBadge]));
+chrome.runtime.onMessage.addListener(state => ap([drawSelectorsFromState, updateBadge], [state]));

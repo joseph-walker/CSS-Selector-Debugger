@@ -6,6 +6,7 @@ import { addSelector$ } from './../data/actions/addSelector';
 import { editSelector$ } from './../data/actions/editSelector';
 import { deleteSelector$ } from './../data/actions/deleteSelector';
 import { toggleExtensionEnabled$ } from './../data/actions/toggleExtensionEnabled';
+import { toggleHideSelector$ } from './../data/actions/toggleHideSelector';
 
 import { SelectorEditor } from './../components/Selector';
 
@@ -36,13 +37,20 @@ const handleToggleExtensionEnabled = () => {
     toggleExtensionEnabled$.next();
 };
 
+const handleToggleVisibility = (index: number) => () => {
+    toggleHideSelector$.next({
+        whoAmI: index
+    });
+};
+
 export function App(props: AppProps) {
     const selectors = props.selectors.map((selector, index) => (
         <SelectorEditor
             whoAmI={index}
             selector={selector}
             onDelete={handleDeleteSelector(index)}
-            onChange={handleEditSelector(index)} />
+            onChange={handleEditSelector(index)}
+            onToggleVisibility={handleToggleVisibility(index)} />
     ));
 
     const noSelectorsError = (

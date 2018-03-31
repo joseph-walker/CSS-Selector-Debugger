@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-interface EyeOpenIconProps {
+interface EyeClosedIconProps {
     //
 }
 
-export function EyeOpen(props: EyeOpenIconProps) {
+export function EyeClosed(props: EyeClosedIconProps) {
     return (
         <svg
             x='0px'
